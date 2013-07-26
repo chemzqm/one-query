@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example of one-query</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="build/build.js"></script>
+    <style>
+      body {
+        padding:100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="col">
+    </div>
+
+    <script>
+      //控制台下应该只有一次请求
+      var query = require('one-query');
+      var params = {
+        'access_token':'141a5ed80106bbed49a5ec8c74c9033ef80b27cf',
+        'start-date': '2013-07-19',
+        'end-date': '2013-07-25',
+        'start-index':1,
+        'max-results':1
+      };
+
+      var url = 'http://www.sitemaster.com.cn:8888/sites/4588e8af/reports/summary';
+      query(url, params, function(err, res) {
+        console.log(err);
+        console.log(123);
+      })
+
+      query(url, params, function(err, res) {
+        console.log(err);
+        console.log(456);
+      })
+
+      setTimeout(function(){
+        query(url, params, function(err, res) {
+          console.log(err);
+          console.log(789);
+        })
+      }, 6000);
+    </script>
+  </body>
+</html>

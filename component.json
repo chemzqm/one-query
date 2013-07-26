@@ -1,0 +1,16 @@
+{
+  "name": "one-query",
+  "repo": "chemzqm/one-query",
+  "description": "Make simple ajax get request with cache support",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "visionmedia/superagent": "*",
+    "kaerus-component/base64": "*"
+  },
+  "scripts":[
+    "index.js"
+  ],
+  "development": {},
+  "license": "MIT"
+}

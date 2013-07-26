@@ -1,13 +1,12 @@
-
 # one-query
 
-  Make simple ajax get request with cache support
+  Make the same get request made only once.
 
 ## Installation
 
   Install with [component(1)](http://component.io):
 
-    $ component install chemzqm/query-cache
+    $ component install chemzqm/one-query
 
 ## API
 

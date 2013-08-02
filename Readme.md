@@ -23,7 +23,9 @@ query('/test', {x:1, y:2}, function(err, res) {
   console.log(res.status);
 });
 ```
+## TODO
 
+之前cache的错误信息应该在请求完成回调结束后后清空对应cache
 
 ## License
 

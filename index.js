@@ -34,6 +34,9 @@ var queues = (function() {
     },
     get: function(url) {
       return map[url];
+    },
+    remove: function (url) {
+      delete map[url];
     }
   }
 })();
@@ -62,6 +65,9 @@ Queue.prototype.start = function() {
     this.callbacks.forEach(function(cb) {
       cb(err, res);
     });
-  this.callbacks = [];
+    this.callbacks = [];
+    if (err || res.error) {
+      queues.remove(this.url);
+    }
   }.bind(this));
 }

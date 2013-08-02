@@ -2,7 +2,7 @@
   "name": "one-query",
   "repo": "chemzqm/one-query",
   "description": "Make simple ajax get request with cache support",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [],
   "dependencies": {
     "visionmedia/superagent": "*",

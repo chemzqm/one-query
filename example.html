@@ -18,17 +18,20 @@
       //控制台下应该只有一次请求
       var query = require('one-query');
       var params = {
-        'start-date': '2013-07-19',
-        'end-date': '2013-07-25',
-        'start-index':1,
-        'max-results':1
+        duration: 2000,
       };
 
-      var url = 'http://www.sitemaster.com.cn:8888/sites/4588e8af/reports/summary';
+      var url = '/query';
       query(url, params, function(err, res) {
-        console.log(res.error);
-        console.log(err);
-        console.log(res.text);
+        if (err) {
+          console.log(err);
+        } else if (res.error) {
+          console.log(res.error);
+        }
+        if (res) {
+          console.log(res.body);
+          console.log(res.text);
+        }
       })
 
       query(url, params, function(err, res) {
@@ -37,11 +40,11 @@
       })
 
       setTimeout(function(){
-        query(url, params, function(err, res) {
+        var req = query(url, params, function(err, res) {
           console.log(err);
           console.log(789);
         })
-      }, 6000);
+      }, 3000);
     </script>
   </body>
 </html>

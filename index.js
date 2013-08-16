@@ -17,7 +17,8 @@ module.exports = function(url, params, callback) {
   if (params) {
     url = url + '?' + pairs.join('&');
   }
-  queues.add(url, callback);
+  var queue = queues.add(url, callback);
+  return queue.req;
 }
 
 var queues = (function() {
@@ -31,6 +32,7 @@ var queues = (function() {
       map[url] = queue;
       queue.push(cb);
       queue.start();
+      return queue;
     },
     get: function(url) {
       return map[url];
@@ -54,20 +56,23 @@ Queue.prototype.push = function(cb) {
     return cb(this.err, this.res);
   }
   this.callbacks.push(cb);
+  return this;
 }
 
 Queue.prototype.start = function() {
   this.status = 'pendding';
-  request.get(this.url, function(err, res) {
-    this.err = err;
-    this.res = res;
-    this.status = 'done';
-    this.callbacks.forEach(function(cb) {
-      cb(err, res);
-    });
-    this.callbacks = [];
-    if (err || res.error) {
-      queues.remove(this.url);
-    }
-  }.bind(this));
+  this.req = request.get(this.url)
+    .timeout(1000)
+    .end(function(err, res) {
+      this.err = err;
+      this.res = res;
+      this.status = 'done';
+      this.callbacks.forEach(function(cb) {
+        cb(err, res);
+      });
+      this.callbacks = [];
+      if (err || res.error) {
+        queues.remove(this.url);
+      }
+    }.bind(this));
 }

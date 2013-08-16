@@ -2,6 +2,10 @@
 
   Make the same get request made only once.
 
+  The default timeout is 10s.
+
+  If any error happens, the following request with the same url & parmas will be sent again.
+
 ## Installation
 
   Install with [component(1)](http://component.io):
@@ -23,9 +27,6 @@ query('/test', {x:1, y:2}, function(err, res) {
   console.log(res.status);
 });
 ```
-## TODO
-
-之前cache的错误信息应该在请求完成回调结束后后清空对应cache
 
 ## License
 

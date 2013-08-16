@@ -62,7 +62,7 @@ Queue.prototype.push = function(cb) {
 Queue.prototype.start = function() {
   this.status = 'pendding';
   this.req = request.get(this.url)
-    .timeout(1000)
+    .timeout(10000)
     .end(function(err, res) {
       this.err = err;
       this.res = res;

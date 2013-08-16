@@ -26,8 +26,10 @@ var queues = (function() {
   return {
     add: function(url, cb) {
       var queue = map[url];
-      if (queue)
-        return queue.push(cb);
+      if (queue) {
+        queue.push(cb);
+        return queue;
+      }
       queue= new Queue(url);
       map[url] = queue;
       queue.push(cb);
